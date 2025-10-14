@@ -20,7 +20,37 @@
                 <figure class="mb-4"><img class="img-fluid rounded" src="{{single_post.blog_image.url}}" alt="..." /></figure>
                 <!-- Post content-->
                 <section class="mb-5">
+                    <p class="fs-5 mb-4">{{single_post.short_description}}</p>
                     <p class="fs-5 mb-4">{{single_post.blog_body}}</p>
+                    <h5>comment {{comment_count}}</h5>
+                    {% if comment %}
+                    {% for comments in comment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="car-text mb-0">{{ comments }}</p>
+                                <span>
+                                    <small>{{comments.user}}</small>
+                                    <small>{{comments.created_at | timesince }} ago</small>
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                    No comment yet
+                    {% endif %}
+                    <div class="form-group">
+                        {% if user.is_authenticated %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mt-2">
+                                <textarea name="comment" class="form-control" placeholder="write the Comment"></textarea>
+                                <input type="submit" class="btn btn-primary mt-2">
+                            </div>
+                        </form>
+                        {% else %}
+                        <p> Please <span><a href="{% url 'login' %}">login</a></span> to write the comment </p>
+                        {% endif %}
+                    </div>
                     </section>
             </article>
         </div>
