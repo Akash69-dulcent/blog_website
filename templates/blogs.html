@@ -1,7 +1,7 @@
 {% extends './base/base.html' %}
 
 {% block content %}
-    <!-- Page content-->
+<!-- Page content-->
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
@@ -12,12 +12,14 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">{{single_post}}</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Posted on {{single_post.created_at}} by {{single_post.author}}</div>
+                    <div class="text-muted fst-italic mb-2">Posted on {{single_post.created_at}} by
+                        {{single_post.author}}</div>
                     <!-- Post category-->
                     <a class="badge bg-primary text-decoration-none text-light" href="#!">{{single_post.Category}}</a>
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="{{single_post.blog_image.url}}" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{single_post.blog_image.url}}" alt="..." />
+                </figure>
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4">{{single_post.short_description}}</p>
@@ -25,15 +27,15 @@
                     <h5>comment {{comment_count}}</h5>
                     {% if comment %}
                     {% for comments in comment %}
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="car-text mb-0">{{ comments }}</p>
-                                <span>
-                                    <small>{{comments.user}}</small>
-                                    <small>{{comments.created_at | timesince }} ago</small>
-                                </span>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="car-text mb-0">{{ comments }}</p>
+                            <span>
+                                <small>{{comments.user}}</small>
+                                <small>{{comments.created_at | timesince }} ago</small>
+                            </span>
                         </div>
+                    </div>
                     {% endfor %}
                     {% else %}
                     No comment yet
@@ -43,7 +45,8 @@
                         <form action="" method="POST">
                             {% csrf_token %}
                             <div class="form-group mt-2">
-                                <textarea name="comment" class="form-control" placeholder="write the Comment"></textarea>
+                                <textarea name="comment" class="form-control"
+                                    placeholder="write the Comment"></textarea>
                                 <input type="submit" class="btn btn-primary mt-2">
                             </div>
                         </form>
@@ -51,13 +54,13 @@
                         <p> Please <span><a href="{% url 'login' %}">login</a></span> to write the comment </p>
                         {% endif %}
                     </div>
-                    </section>
+                </section>
             </article>
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
             <!-- Search widget-->
-            <!-- Categories widget--> 
+            <!-- Categories widget-->
             <div class="card mb-4 p-3">
                 <h4 class="font-italic">Categories</h4>
                 <div class="card-body">
